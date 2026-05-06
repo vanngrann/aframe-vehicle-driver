@@ -107,8 +107,9 @@
       const steer    = left + right;    // -1, 0, or 1
 
       // ── 1. Turning – only turn when moving ──────────────────────────────────
-      // Allow steering even while stationary for realism; feels better in 3D
-      const turnAmount = steer * this.data.turnSpeed * dt;
+      // Only turn when the car is actually moving
+      const speedFactor = Math.abs(this._currentSpeed) / this.data.speed;
+      const turnAmount = steer * this.data.turnSpeed * speedFactor * dt;
       this._yaw += turnAmount;
 
       // ── 2. Velocity ─────────────────────────────────────────────────────────
