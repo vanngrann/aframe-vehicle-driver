@@ -18,17 +18,9 @@ Include after A-Frame:
 ## Basic Usage
 
 ```html
-<a-entity
-  vehicle-driver="speed: 10; turnSpeed: 70; bodySelector: #my-model"
-  position="0 1 0"
->
+<a-entity vehicle-driver="speed: 10; turnSpeed: 70; bodySelector: #my-model" position="0 1 0">
   <a-gltf-model id="my-model" src="models/car/scene.gltf" rotation="0 180 0"></a-gltf-model>
-  <a-camera
-    position="0 4 6"
-    rotation="-15 0 0"
-    look-controls="enabled: false"
-    wasd-controls="enabled: false"
-  ></a-camera>
+  <a-camera position="0 4 6" rotation="-15 0 0" look-controls="enabled: false" wasd-controls="enabled: false"></a-camera>
 </a-entity>
 ```
 
