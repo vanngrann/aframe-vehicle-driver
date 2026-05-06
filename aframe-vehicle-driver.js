@@ -98,10 +98,10 @@
       const dt = Math.min(delta / 1000, 0.05); // seconds, capped to avoid spiral of death
 
       const keys = this._keys;
-      const fwd  = keys[this.data.keyForward]  ? 1 : 0;
-      const back = keys[this.data.keyBackward] ? -1 : 0;
-      const left = keys[this.data.keyLeft]     ? 1 : 0;
-      const right= keys[this.data.keyRight]    ? -1 : 0;
+      const fwd  = (keys[this.data.keyForward]  || keys['ArrowUp'])    ? 1 : 0;
+      const back = (keys[this.data.keyBackward] || keys['ArrowDown'])  ? -1 : 0;
+      const left = (keys[this.data.keyLeft]     || keys['ArrowLeft'])  ? 1 : 0;
+      const right= (keys[this.data.keyRight]    || keys['ArrowRight']) ? -1 : 0;
 
       const throttle = fwd + back;      // -1, 0, or 1
       const steer    = left + right;    // -1, 0, or 1
@@ -120,10 +120,10 @@
       const yawRad = THREE.MathUtils.DEG2RAD * this._yaw;
       const dx = Math.sin(yawRad) * this._currentSpeed * dt;
       const dz = Math.cos(yawRad) * this._currentSpeed * dt;
-
+      
       const pos = this.el.object3D.position;
-      pos.x -= dx;
-      pos.z -= dz;
+      pos.x += dx;
+      pos.z += dz;
       if (this.data.constrainToGround) {
         // keep Y as-is (terrain/physics can override)
       }
